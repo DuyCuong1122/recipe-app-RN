@@ -5,11 +5,12 @@ const styles = StyleSheet.create({
   btnContainer: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20, 
-    padding: 10, 
-    margin: 8, 
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginLeft: 10,
     backgroundColor: "white",
-    shadowColor: "#000",
+    shadowColor: "blue",
     shadowOffset: {
       width: 0,
       height: 2,

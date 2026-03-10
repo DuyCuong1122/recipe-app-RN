@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#2cd18a",
+    paddingHorizontal: 20,
   },
   photo: {
     flex: 1,
