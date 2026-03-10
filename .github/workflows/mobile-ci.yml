@@ -13,25 +13,41 @@ jobs:
     environment: test_fast_lane
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      # Node
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
+      # Ruby
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
+          bundler-cache: true
 
-      - run: gem install fastlane
+      # Fastlane
+      - name: Install Fastlane
+        run: gem install fastlane
 
+      # Install Fastlane plugins
+      - name: Install Fastlane plugins
+        run: |
+          cd android
+          bundle install
+
+      # Run fastlane
       - name: Run Fastlane
         run: |
           cd android
-          fastlane firebase
+          bundle exec fastlane firebase
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          NODE_ENV: production
